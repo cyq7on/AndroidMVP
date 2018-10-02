@@ -60,6 +60,17 @@ public class ImageLoader {
         load(context, url, img, mDefRequestOptions);
     }
 
+    public void load(Context context, int resId, ImageView img, RequestOptions requestOptions) {
+        if (resId == 0 || !checkContext(context)) {
+            return;
+        }
+        Glide.with(context).load(resId).apply(requestOptions).into(img);
+    }
+
+    public void load(Context context, int resId, ImageView img) {
+        load(context, resId, img, mDefRequestOptions);
+    }
+
     //是否有效context
     private boolean checkContext(Context context) {
         if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
